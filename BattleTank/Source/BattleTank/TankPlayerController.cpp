@@ -42,7 +42,7 @@ void ATankPlayerController::AimTowardsCrosshair()
 	FVector HitLocation; //Out Parameter
 	if (GetSightRayHitLocation(HitLocation))
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Hitting %s"), *HitLocation.ToString());
+		//UE_LOG(LogTemp, Warning, TEXT("Look Direction %s"), *HitLocation.ToString());
 	}
 
 
@@ -50,6 +50,13 @@ void ATankPlayerController::AimTowardsCrosshair()
 
 bool ATankPlayerController::GetSightRayHitLocation(FVector & HitLocation) const
 {
-	HitLocation = FVector(1.0);
+	//Find XHair Position.
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);
+
+	auto ScreenLocation = FVector2D(ViewportSizeX * CrosshairXLocation, ViewportSizeY * CrosshairYLocation);
+
+	//"de-project" screen position of the xhair to a world direction.
+	//Line trace along that line and report a hit.
 	return true;
 }
