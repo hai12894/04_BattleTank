@@ -5,4 +5,9 @@
 
 
 
-
+void UTankTrack::SetThrottle(float Throttle)
+{
+	//auto Time = GetWorld()->GetTimeSeconds();
+	auto Name = GetName();
+	UE_LOG(LogTemp, Warning, TEXT("%s: This track throttled at %f"), *Name, Throttle);
+}
