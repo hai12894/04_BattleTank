@@ -17,7 +17,6 @@ ATank::ATank()
 	PrimaryActorTick.bCanEverTick = false;
 
 	auto TankName = GetName();
-	UE_LOG(LogTemp, Warning, TEXT("%s Donkey: Tank C++ Construct"), *TankName);
 }
 
 // Called when the game starts or when spawned
@@ -25,6 +24,7 @@ void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	TankAimingComponent = FindComponentByClass<UTankAimingComponent>();
 }
 
 void ATank::AimAt(FVector HitLocation)
