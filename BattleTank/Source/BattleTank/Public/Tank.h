@@ -14,6 +14,9 @@ public:
 	//Called by the engine when the actor damage is dealt.
 	virtual float TakeDamage(float DamageAmount, struct FDamageEvent const & DamageEvent, class AController* EventInstigator, AActor* Damagecauser) override;
 
+	UFUNCTION(BlueprintPure, Category = "Health")
+	float GetHealthPercent() const;
+
 protected:
 
 private:
