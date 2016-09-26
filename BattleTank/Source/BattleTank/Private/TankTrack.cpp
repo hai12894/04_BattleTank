@@ -5,6 +5,23 @@
 #include "../Public/TankTrack.h"
 
 
+UTankTrack::UTankTrack()
+{
+	PrimaryComponentTick.bCanEverTick = true;
+}
+
+void UTankTrack::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
+{
+	auto SlippageSpeed = FVector::DotProduct(GetRightVector(), GetComponentVelocity()); //Getting slippage speed
+
+	auto CorrectionAcceleration = -SlippageSpeed / DeltaTime * GetRightVector(); // Acceleration to correct this tick.
+
+	auto TankRoot = Cast<UStaticMeshComponent>(GetOwner()->GetRootComponent());
+		
+	auto CorrectionForce = TankRoot->GetMass() * CorrectionAcceleration / 2; //Apply sideways to 2 tracks
+
+	TankRoot->AddForce(CorrectionForce);
+}
 
 void UTankTrack::SetThrottle(float Throttle)
 {
