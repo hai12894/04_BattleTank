@@ -19,7 +19,7 @@ protected:
 	
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Setup")
-	float AcceptanceRadius = 8000;
+	float AcceptanceRadius = 3000;
 
 private:
 	virtual void SetPawn(APawn* InPawn) override;
@@ -29,7 +29,7 @@ private:
 	virtual void Tick(float DeltaSeconds) override;
 
 	UFUNCTION()
-	void OnPossedTankDeath();
+	void OnPossessedTankDeath();
 	
 	
 	
